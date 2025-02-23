@@ -1,16 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import {
   MagicWandIcon,
-  UploadIcon,
+  LightningBoltIcon,
   CheckCircledIcon,
+  AvatarIcon,
+  UploadIcon,
 } from "@radix-ui/react-icons";
-import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  show: {
+  visible: {
     opacity: 1,
     transition: {
       staggerChildren: 0.2,
@@ -18,136 +20,197 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const childVariants = {
   hidden: { y: 20, opacity: 0 },
-  show: { y: 0, opacity: 1 },
+  visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120 } },
 };
 
-interface FeatureItem {
-  title: string;
-  icon: React.ReactNode;
-  description: string;
-}
-
-const features: FeatureItem[] = [
+const features = [
   {
-    title: "One-Click Removal",
-    icon: <MagicWandIcon className="w-8 h-8" />,
-    description: "Instant background removal with AI-powered technology",
+    title: "AI-Powered Precision",
+    icon: <MagicWandIcon />,
+    description: "Advanced edge detection for perfect cuts",
   },
   {
-    title: "High Quality",
-    icon: <CheckCircledIcon className="w-8 h-8" />,
-    description: "HD resolution output with perfect edge detection",
+    title: "Instant Processing",
+    icon: <LightningBoltIcon />,
+    description: "Results in under 3 seconds",
   },
   {
-    title: "Batch Processing",
-    icon: <UploadIcon className="w-8 h-8" />,
-    description: "Process multiple images simultaneously",
+    title: "Professional Quality",
+    icon: <CheckCircledIcon />,
+    description: "4K resolution support",
   },
 ];
 
-export default function Home() {
+export default function Remover() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      <nav className="px-6 py-4 bg-white/80 backdrop-blur-md border-b border-slate-100">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2"
-          >
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg" />
+    <motion.main
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100"
+    >
+      <nav className="sticky top-0 bg-white/80 backdrop-blur-md border-b border-slate-100 p-5 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <MagicWandIcon className="w-5 h-5 text-white" />
+            </div>
             <span className="text-xl font-bold text-slate-900">SnapCut</span>
-          </motion.div>
-          <div className="flex items-center gap-6">
-            <button className="text-slate-600 hover:text-indigo-600 transition-colors">
+          </div>
+          <div className="flex items-center gap-6 text-slate-600">
+            <button className="hover:text-blue-600 transition-colors font-medium">
               Pricing
             </button>
-            <button className="text-slate-600 hover:text-indigo-600 transition-colors">
-              Login
+            <button className="hover:text-blue-600 transition-colors font-medium">
+              Enterprise
             </button>
           </div>
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-6 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="text-center mb-20"
-        >
-          <h1 className="text-5xl font-bold text-slate-900 mb-6">
-            Remove Image Backgrounds
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <motion.div variants={childVariants} className="text-center mb-24">
+          <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+            Professional Background Removal
             <br />
-            <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
-              in Seconds
+            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Made Effortless
             </span>
           </h1>
-          <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-            Powered by advanced AI to deliver professional-grade background
-            removal instantly. Free to use - no credit card required.
+          <p className="text-lg text-slate-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+            Automatically remove image backgrounds with AI precision. Trusted by
+            50,000+ professionals worldwide.
           </p>
-          <Link className="flex justify-center gap-4" href="/remover-bg">
+        </motion.div>
+
+        <div className="flex justify-center mb-28">
+          <Link href="/remover-bg">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="bg-indigo-600 text-white px-8 py-4 rounded-lg font-semibold
-                       hover:bg-indigo-700 transition-colors flex items-center gap-2"
+              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold
+                       hover:from-blue-700 hover:to-purple-700 transition-all flex items-center gap-3 shadow-lg hover:shadow-xl"
             >
               <UploadIcon className="w-5 h-5" />
               Upload Image
             </motion.button>
           </Link>
-        </motion.div>
+        </div>
 
         <motion.div
           variants={containerVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8 mb-24"
+          className="grid md:grid-cols-3 gap-8 mb-28"
         >
           {features.map((feature, index) => (
             <motion.div
               key={index}
-              variants={itemVariants}
-              className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+              variants={childVariants}
+              className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 group"
             >
-              <div className="w-12 h-12 bg-indigo-50 rounded-lg mb-4 flex items-center justify-center">
+              <div className="w-14 h-14 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl mb-6 flex items-center justify-center text-blue-600 group-hover:text-purple-600 transition-colors">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-2">
+              <h3 className="text-xl font-bold text-slate-900 mb-3">
                 {feature.title}
               </h3>
-              <p className="text-slate-600">{feature.description}</p>
+              <p className="text-slate-600 text-base leading-relaxed">
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="bg-gradient-to-r from-indigo-600 to-blue-500 rounded-2xl p-12 text-center"
+          variants={childVariants}
+          className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 sm:p-12 text-center text-white mb-28 shadow-xl"
         >
-          <div className="max-w-2xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Try it free today
-            </h2>
-            <p className="text-slate-100 mb-8">
-              Join thousands of professionals and creatives who already trust
-              our background removal technology
+          <div className="max-w-4xl mx-auto">
+            <div className="text-3xl mb-6 opacity-50">“</div>
+            <p className="text-xl sm:text-2xl font-medium mb-8 leading-relaxed">
+              The fastest and most reliable background remover we&apos;ve used.
+              Reduced our editing time by 70% compared to other tools.
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold
-                       hover:bg-slate-100 transition-colors"
-            >
-              Get Started Now
-            </motion.button>
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-16 h-16 bg-white/20 rounded-full backdrop-blur-sm flex items-center justify-center ring-2 ring-white/30">
+                <AvatarIcon className="w-12 h-12 text-white" />
+              </div>
+              <div>
+                <p className="font-bold text-lg">Sarah Johnson</p>
+                <p className="text-sm opacity-90">
+                  Creative Director, Pixel Studio
+                </p>
+              </div>
+            </div>
           </div>
         </motion.div>
-      </main>
-    </div>
+
+        <motion.footer
+          variants={childVariants}
+          className="border-t border-slate-200 pt-12"
+        >
+          <div className="grid md:grid-cols-4 gap-8 text-slate-600 text-center md:text-left">
+            <div className="space-y-4">
+              <div className="flex items-center justify-center md:justify-start gap-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <MagicWandIcon className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold text-slate-900">
+                  SnapCut
+                </span>
+              </div>
+              <p className="text-sm text-slate-500 mt-4 leading-relaxed">
+                Transform your images with AI-powered background removal.
+                Professional results in seconds, trusted by creators worldwide.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-bold text-slate-900 text-lg">Product</h4>
+              <ul className="space-y-3">
+                <li>
+                  <a href="#" className="hover:text-blue-600 transition-colors">
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-600 transition-colors">
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-blue-600 transition-colors">
+                    API
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-bold text-slate-900 text-lg">Company</h4>
+              <ul className="space-y-2">
+                <li>About</li>
+                <li>Blog</li>
+                <li>Careers</li>
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="font-bold text-slate-900 text-lg">Legal</h4>
+              <ul className="space-y-2">
+                <li>Privacy</li>
+                <li>Terms</li>
+                <li>Security</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-12 pt-8 border-t border-slate-200 text-center text-sm text-slate-500">
+            <p>© 2025 SnapCut. All rights reserved.</p>
+          </div>
+        </motion.footer>
+      </div>
+    </motion.main>
   );
 }
