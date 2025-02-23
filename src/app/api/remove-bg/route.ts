@@ -3,19 +3,15 @@ import axios from "axios";
 
 export async function POST(req: Request) {
   try {
-    // Get form data from request
     const formData = await req.formData();
     const file = formData.get("image") as File;
 
-    // Convert file to buffer
     const buffer = Buffer.from(await file.arrayBuffer());
 
-    // Prepare payload for Remove.bg API
     const bgRemovalForm = new FormData();
     bgRemovalForm.append("image_file", new Blob([buffer]), file.name);
     bgRemovalForm.append("size", "auto");
 
-    // Call Remove.bg API
     const response = await axios.post(
       "https://api.remove.bg/v1.0/removebg",
       bgRemovalForm,
@@ -27,7 +23,6 @@ export async function POST(req: Request) {
       }
     );
 
-    // Convert response to base64
     const resultBuffer = Buffer.from(response.data, "binary");
     const base64Image = resultBuffer.toString("base64");
 
