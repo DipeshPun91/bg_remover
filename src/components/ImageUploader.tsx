@@ -1,5 +1,8 @@
+"use client";
+
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import Image from "next/image";
 
 export default function ImageUploader() {
   const [file, setFile] = useState<File | null>(null);
@@ -48,9 +51,11 @@ export default function ImageUploader() {
 
       {file && (
         <div className="mt-4">
-          <img
+          <Image
             src={URL.createObjectURL(file)}
             alt="Original"
+            width="600"
+            height="400"
             className="max-w-md mx-auto"
           />
           <button
@@ -66,7 +71,13 @@ export default function ImageUploader() {
       {result && (
         <div className="mt-8">
           <h2 className="text-xl mb-4">Result:</h2>
-          <img src={result} alt="Result" className="max-w-md mx-auto" />
+          <Image
+            src={result}
+            alt="Result"
+            width="600"
+            height="400"
+            className="max-w-md mx-auto"
+          />
           <a
             href={result}
             download="background-removed.png"
