@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <motion.footer
       variants={childVariants}
-      className="border-t border-slate-200 pt-12"
+      className="container border-t border-slate-200 pt-12"
     >
       <div className="grid md:grid-cols-4 gap-8 text-slate-600 text-center md:text-left">
         <div className="space-y-4">

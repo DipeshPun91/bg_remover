@@ -2,20 +2,26 @@
 
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import { motion } from "framer-motion";
+import { UploadIcon, MagicWandIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 
-export default function ImageUploader() {
+export default function ImageUploader({
+  onProcessingComplete,
+}: {
+  onProcessingComplete: (resultUrl: string) => void;
+}) {
   const [file, setFile] = useState<File | null>(null);
-  const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFile(acceptedFiles[0]);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "image/*": [".png", ".jpg", ".jpeg"] },
+    maxFiles: 1,
   });
 
   const removeBackground = async () => {
@@ -32,7 +38,7 @@ export default function ImageUploader() {
       });
 
       const result = await response.json();
-      setResult(result.imageUrl);
+      onProcessingComplete(result.imageUrl);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -40,52 +46,66 @@ export default function ImageUploader() {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="space-y-8">
       <div
         {...getRootProps()}
-        className="border-2 border-dashed p-8 text-center cursor-pointer"
+        className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all 
+          ${
+            isDragActive
+              ? "border-blue-500 bg-blue-50"
+              : "border-slate-200 hover:border-blue-400"
+          }`}
       >
         <input {...getInputProps()} />
-        <p>Drag & drop image, or click to select</p>
+        <div className="space-y-4">
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4">
+            <UploadIcon className="w-5 h-5 text-blue-600" />
+          </div>
+          <p className="text-slate-600">
+            {isDragActive
+              ? "Drop image here"
+              : "Drag & drop image, or click to select"}
+          </p>
+          <p className="text-sm text-slate-400">Supports: PNG, JPG, JPEG</p>
+        </div>
       </div>
 
       {file && (
-        <div className="mt-4">
-          <Image
-            src={URL.createObjectURL(file)}
-            alt="Original"
-            width="600"
-            height="400"
-            className="max-w-md mx-auto"
-          />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="space-y-6"
+        >
+          <div className="bg-white rounded-xl shadow-sm p-4">
+            <Image
+              src={URL.createObjectURL(file)}
+              alt="Original"
+              width={600}
+              height={400}
+              className="rounded-lg w-full h-64 object-contain"
+            />
+          </div>
+
           <button
             onClick={removeBackground}
             disabled={loading}
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded disabled:bg-gray-400"
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg
+                      font-semibold hover:from-blue-700 hover:to-purple-700 transition-all flex items-center justify-center gap-2
+                      disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {loading ? "Processing..." : "Remove Background"}
+            {loading ? (
+              <>
+                <span className="animate-spin">🌀</span>
+                Processing...
+              </>
+            ) : (
+              <>
+                <MagicWandIcon className="w-5 h-5" />
+                Remove Background
+              </>
+            )}
           </button>
-        </div>
-      )}
-
-      {result && (
-        <div className="mt-8">
-          <h2 className="text-xl mb-4">Result:</h2>
-          <Image
-            src={result}
-            alt="Result"
-            width="600"
-            height="400"
-            className="max-w-md mx-auto"
-          />
-          <a
-            href={result}
-            download="background-removed.png"
-            className="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded"
-          >
-            Download
-          </a>
-        </div>
+        </motion.div>
       )}
     </div>
   );
