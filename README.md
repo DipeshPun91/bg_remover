@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Image Background Remover
 
-## Getting Started
+Description
+This is a web application created using Next.js, Tailwind CSS, TypeScript, React Icons, Axios, UUID, Framer Motion, and the API key of Remover.bg.This project aims to provide a seamless and interactive user experience with efficient design and functionality.
 
-First, run the development server:
+Features
 
-```bash
+Next.js: A React framework for production that makes building and optimizing web applications easy.
+
+Tailwind CSS: A utility-first CSS framework for rapid UI development.
+
+TypeScript: A typed superset of JavaScript that adds static types, making it easier to write and maintain code.
+
+React Icons: A collection of popular icons for React applications.
+
+Axios: A promise-based HTTP client for making API requests.
+
+UUID: A library for generating unique identifiers.
+
+Framer Motion: A powerful animation library for React.
+
+Remover.bgAPI: An API that removes the background from images.
+
+Installation
+Clone the repository:
+
+git clone <repository-url>
+cd <repository-name>
+Install the dependencies:
+
+npm install
+Create a .env.local file in the root directory and add your Remover.bgAPI key:
+
+NEXT_PUBLIC_REMOVER_BG_API_KEY=your_api_key_here
+Run the development server:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open your browser and navigate to http://localhost:3000.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Upload an image to remove its background using the Remover.bgAPI.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Interact with the user interface, which includes icons from React Icons and animations from Framer Motion.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+View the generated unique identifiers with UUID.
