@@ -1,6 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MagicWandIcon } from "@radix-ui/react-icons";
+import {
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+  MagicWandIcon,
+  TwitterLogoIcon,
+} from "@radix-ui/react-icons";
 
 const childVariants = {
   hidden: { y: 20, opacity: 0 },
@@ -11,64 +16,170 @@ const Footer = () => {
   return (
     <motion.footer
       variants={childVariants}
-      className="container border-t border-slate-200 pt-12"
+      className="border-t border-slate-200 mt-24 pt-12 pb-8"
     >
-      <div className="grid md:grid-cols-4 gap-8 text-slate-600 text-center md:text-left">
-        <div className="space-y-4">
-          <div className="flex items-center justify-center md:justify-start gap-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <MagicWandIcon className="w-5 h-5 text-white" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-5 gap-8 mb-12">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                <MagicWandIcon className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                SnapCut
+              </span>
             </div>
-            <span className="text-xl font-bold text-slate-900">SnapCut</span>
+            <p className="text-sm text-slate-600 leading-relaxed">
+              Transform your images with AI-powered background removal.
+              Professional results in seconds.
+            </p>
+            <div className="flex gap-4 pt-4">
+              <a
+                href="#"
+                className="text-slate-400 hover:text-blue-600 transition-colors"
+              >
+                <TwitterLogoIcon className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="text-slate-400 hover:text-blue-600 transition-colors"
+              >
+                <LinkedInLogoIcon className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="text-slate-400 hover:text-blue-600 transition-colors"
+              >
+                <GitHubLogoIcon className="w-5 h-5" />
+              </a>
+            </div>
           </div>
-          <p className="text-sm text-slate-500 mt-4 leading-relaxed">
-            Transform your images with AI-powered background removal.
-            Professional results in seconds, trusted by creators worldwide.
-          </p>
+
+          <div className="space-y-4">
+            <h4 className="font-semibold text-slate-900">Product</h4>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Features
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  API Docs
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Status
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-semibold text-slate-900">Company</h4>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="font-semibold text-slate-900">Legal</h4>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                >
+                  Security
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div className="space-y-4">
-          <h4 className="font-bold text-slate-900 text-lg">Product</h4>
-          <ul className="space-y-3">
-            <li>
+        <div className="border-t border-slate-200 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-slate-600">
+              © 2025 SnapCut. All rights reserved.
+            </p>
+            <div className="flex gap-6 mt-4 md:mt-0 text-sm text-slate-600">
               <a href="#" className="hover:text-blue-600 transition-colors">
-                Features
+                Sitemap
               </a>
-            </li>
-            <li>
               <a href="#" className="hover:text-blue-600 transition-colors">
-                Pricing
+                Accessibility
               </a>
-            </li>
-            <li>
               <a href="#" className="hover:text-blue-600 transition-colors">
-                API
+                Feedback
               </a>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
-
-        <div className="space-y-4">
-          <h4 className="font-bold text-slate-900 text-lg">Company</h4>
-          <ul className="space-y-2">
-            <li>About</li>
-            <li>Blog</li>
-            <li>Careers</li>
-          </ul>
-        </div>
-
-        <div className="space-y-4">
-          <h4 className="font-bold text-slate-900 text-lg">Legal</h4>
-          <ul className="space-y-2">
-            <li>Privacy</li>
-            <li>Terms</li>
-            <li>Security</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="mt-12 pt-8 border-t border-slate-200 text-center text-sm text-slate-500">
-        <p>© 2025 SnapCut. All rights reserved.</p>
       </div>
     </motion.footer>
   );
