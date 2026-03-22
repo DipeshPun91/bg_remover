@@ -1,3 +1,4 @@
+// remover/page.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -10,13 +11,17 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2 },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
 const childVariants = {
   hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
 };
 
 export default function Remover() {
@@ -31,31 +36,24 @@ export default function Remover() {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-slate-100"
+      className="min-h-screen flex flex-col bg-white"
     >
       <Header />
 
-      <div className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+      <div className="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
         <motion.div
           variants={childVariants}
-          className="text-center mb-12 sm:mb-16 space-y-6"
+          className="text-center mb-12 space-y-4"
         >
-          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">
-            Remove Image Backgrounds
-            <br />
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Instantly with AI
-            </span>
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
+            Remove image background
           </h1>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
-            Upload your image and get automatic background removal in seconds
+          <p className="text-lg text-gray-500 max-w-xl mx-auto">
+            Upload your image and get professional results in seconds
           </p>
         </motion.div>
 
-        <motion.div
-          variants={childVariants}
-          className="max-w-3xl mx-auto bg-white rounded-2xl shadow-sm p-6 sm:p-8"
-        >
+        <motion.div variants={childVariants} className="max-w-2xl mx-auto">
           <ImageUploader onProcessingComplete={handleProcessingComplete} />
         </motion.div>
       </div>
