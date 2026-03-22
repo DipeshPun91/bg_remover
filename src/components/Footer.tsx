@@ -13,55 +13,62 @@ const childVariants = {
 };
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <motion.footer
       variants={childVariants}
-      className="border-t border-slate-200 mt-24 pt-12 pb-8"
+      className="bg-gray-950 border-t border-gray-800 mt-24 pt-12 pb-8"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-5 gap-8 mb-12">
+          {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center">
                 <MagicWandIcon className="w-5 h-5 text-white" />
               </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                 SnapCut
               </span>
             </div>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-sm text-gray-400 leading-relaxed">
               Transform your images with AI-powered background removal.
               Professional results in seconds.
             </p>
             <div className="flex gap-4 pt-4">
               <a
                 href="#"
-                className="text-slate-400 hover:text-blue-600 transition-colors"
+                className="text-gray-500 hover:text-blue-400 transition-colors"
+                aria-label="Twitter"
               >
                 <TwitterLogoIcon className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-slate-400 hover:text-blue-600 transition-colors"
+                className="text-gray-500 hover:text-blue-400 transition-colors"
+                aria-label="LinkedIn"
               >
                 <LinkedInLogoIcon className="w-5 h-5" />
               </a>
               <a
                 href="#"
-                className="text-slate-400 hover:text-blue-600 transition-colors"
+                className="text-gray-500 hover:text-blue-400 transition-colors"
+                aria-label="GitHub"
               >
                 <GitHubLogoIcon className="w-5 h-5" />
               </a>
             </div>
           </div>
 
+          {/* Product Section */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-slate-900">Product</h4>
+            <h4 className="font-semibold text-gray-200">Product</h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Features
                 </a>
@@ -69,7 +76,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Pricing
                 </a>
@@ -77,7 +84,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   API Docs
                 </a>
@@ -85,7 +92,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Status
                 </a>
@@ -93,13 +100,14 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Company Section */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-slate-900">Company</h4>
+            <h4 className="font-semibold text-gray-200">Company</h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   About
                 </a>
@@ -107,7 +115,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Blog
                 </a>
@@ -115,7 +123,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Careers
                 </a>
@@ -123,7 +131,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Contact
                 </a>
@@ -131,13 +139,14 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Legal Section */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-slate-900">Legal</h4>
+            <h4 className="font-semibold text-gray-200">Legal</h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Privacy Policy
                 </a>
@@ -145,7 +154,7 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Terms of Service
                 </a>
@@ -153,28 +162,56 @@ const Footer = () => {
               <li>
                 <a
                   href="#"
-                  className="text-sm text-slate-600 hover:text-blue-600 transition-colors"
+                  className="text-sm text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Security
                 </a>
               </li>
             </ul>
           </div>
+
+          {/* Newsletter Section - Added for professional touch */}
+          <div className="space-y-4">
+            <h4 className="font-semibold text-gray-200">Stay Updated</h4>
+            <p className="text-sm text-gray-400">
+              Get the latest updates and news.
+            </p>
+            <div className="flex flex-col gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="px-3 py-2 bg-gray-900 border border-gray-800 rounded-lg text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+              />
+              <button className="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors">
+                Subscribe
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div className="border-t border-slate-200 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-slate-600">
-              © 2025 SnapCut. All rights reserved.
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-800 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-500">
+              © {currentYear} SnapCut. All rights reserved.
             </p>
-            <div className="flex gap-6 mt-4 md:mt-0 text-sm text-slate-600">
-              <a href="#" className="hover:text-blue-600 transition-colors">
+            <div className="flex gap-6 text-sm">
+              <a
+                href="#"
+                className="text-gray-500 hover:text-blue-400 transition-colors"
+              >
                 Sitemap
               </a>
-              <a href="#" className="hover:text-blue-600 transition-colors">
+              <a
+                href="#"
+                className="text-gray-500 hover:text-blue-400 transition-colors"
+              >
                 Accessibility
               </a>
-              <a href="#" className="hover:text-blue-600 transition-colors">
+              <a
+                href="#"
+                className="text-gray-500 hover:text-blue-400 transition-colors"
+              >
                 Feedback
               </a>
             </div>
