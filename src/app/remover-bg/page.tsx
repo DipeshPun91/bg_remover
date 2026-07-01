@@ -49,11 +49,17 @@ export default function Remover() {
           variants={childVariants}
           className="text-center mb-12 space-y-4"
         >
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-50 border border-gray-200 rounded-full">
+            <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+            <p className="text-xs font-medium text-gray-600 uppercase tracking-wide">
+              Step 1 of 2
+            </p>
+          </div>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight">
             Remove image background
           </h1>
           <p className="text-lg text-gray-500 max-w-xl mx-auto">
-            Upload your image and get professional results in seconds
+            Upload an image and get a transparent PNG back in seconds
           </p>
         </motion.div>
 

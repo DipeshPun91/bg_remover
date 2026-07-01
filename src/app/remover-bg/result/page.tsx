@@ -138,55 +138,63 @@ export default function ResultPage() {
         </div>
 
         {/* Result Card */}
-        <div className="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden relative">
-          {/* Actions - Top Right */}
-          <div className="absolute top-4 right-4 z-10 flex gap-2">
-            <button
-              onClick={handleCopyImage}
-              className="inline-flex items-center justify-center gap-2 bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-700 px-3 py-2 rounded-lg
-                       hover:bg-white transition-all font-medium text-sm shadow-sm"
-              title="Copy image"
-            >
-              <CopyIcon className="w-4 h-4" />
-              {copied ? "Copied!" : "Copy"}
-            </button>
+        <div className="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden">
+          {/* Image Container — checkerboard pattern makes the transparent
+              background actually visible, the standard convention used by
+              tools like Figma and Photoshop */}
+          <div
+            className="p-8 flex items-center justify-center min-h-[500px]"
+            style={{
+              backgroundImage:
+                "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+              backgroundSize: "20px 20px",
+              backgroundPosition: "0 0, 0 10px, 10px -10px, -10px 0px",
+              backgroundColor: "#fafafa",
+            }}
+          >
+            <div className="relative w-full max-w-2xl h-96">
+              <Image
+                src={imageUrl}
+                alt="Processed image with transparent background"
+                fill
+                className="object-contain drop-shadow-sm"
+                priority
+              />
+            </div>
+          </div>
 
+          {/* Actions */}
+          <div className="flex flex-col sm:flex-row gap-3 p-4 border-t border-gray-100 bg-white">
             <a
               href={imageUrl}
               download="transparent-image.png"
-              className="inline-flex items-center justify-center gap-2 bg-gray-900/90 backdrop-blur-sm text-white px-3 py-2 rounded-lg
-                       hover:bg-gray-900 transition-all font-medium text-sm shadow-sm"
-              title="Download image"
+              className="flex-1 inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-4 py-2.5 rounded-lg
+                       hover:bg-gray-800 transition-all font-medium text-sm"
             >
               <DownloadIcon className="w-4 h-4" />
-              Download
+              Download PNG
             </a>
+
+            <button
+              onClick={handleCopyImage}
+              className="inline-flex items-center justify-center gap-2 border border-gray-200 text-gray-700 px-4 py-2.5 rounded-lg
+                       hover:bg-gray-50 transition-all font-medium text-sm"
+            >
+              <CopyIcon className="w-4 h-4" />
+              {copied ? "Copied!" : "Copy image"}
+            </button>
 
             <button
               onClick={() => {
                 sessionStorage.removeItem("bgRemoverResult");
                 window.location.href = "/remover-bg";
               }}
-              className="inline-flex items-center justify-center gap-2 bg-white/90 backdrop-blur-sm border border-gray-200 text-gray-700 px-3 py-2 rounded-lg
-                       hover:bg-white transition-all font-medium text-sm shadow-sm"
-              title="Process another image"
+              className="inline-flex items-center justify-center gap-2 border border-gray-200 text-gray-700 px-4 py-2.5 rounded-lg
+                       hover:bg-gray-50 transition-all font-medium text-sm"
             >
               <ArrowLeftIcon className="w-4 h-4" />
-              New
+              New image
             </button>
-          </div>
-
-          {/* Image Container */}
-          <div className="bg-gray-50 p-8 flex items-center justify-center min-h-[500px]">
-            <div className="relative w-full max-w-2xl h-96">
-              <Image
-                src={imageUrl}
-                alt="Processed image with transparent background"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
           </div>
         </div>
 

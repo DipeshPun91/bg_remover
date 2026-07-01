@@ -15,10 +15,12 @@ export default function ImageUploader({
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const selectedFile = acceptedFiles[0];
     setFile(selectedFile);
+    setError(null);
 
     // Create preview URL
     const previewUrl = URL.createObjectURL(selectedFile);
@@ -31,6 +33,7 @@ export default function ImageUploader({
     }
     setFile(null);
     setPreview(null);
+    setError(null);
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -44,6 +47,7 @@ export default function ImageUploader({
     if (!file) return;
 
     setLoading(true);
+    setError(null);
     try {
       const formData = new FormData();
       formData.append("image", file);
@@ -54,12 +58,24 @@ export default function ImageUploader({
       });
 
       const result = await response.json();
+
+      if (!response.ok) {
+        setError(result.error || "Something went wrong. Please try again.");
+        return;
+      }
+
       onProcessingComplete(result.imageUrl);
-    } catch (error) {
-      console.error("Error:", error);
+    } catch (err) {
+      console.error("Error:", err);
+      setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   };
 
   return (
@@ -87,12 +103,14 @@ export default function ImageUploader({
             >
               <input {...getInputProps()} />
               <div className="space-y-4">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-sm mx-auto">
-                  <UploadIcon className="w-5 h-5 text-gray-400" />
+                <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-blue-50 to-purple-50 border border-gray-100 rounded-2xl mx-auto">
+                  <UploadIcon className="w-6 h-6 text-blue-600" />
                 </div>
                 <div>
-                  <p className="text-gray-600 font-medium">
-                    {isDragActive ? "Drop your image here" : "Upload an image"}
+                  <p className="text-gray-700 font-medium">
+                    {isDragActive
+                      ? "Drop your image here"
+                      : "Drag and drop an image, or click to browse"}
                   </p>
                   <p className="text-sm text-gray-400 mt-1">
                     PNG, JPG, JPEG, WEBP up to 10MB
@@ -110,6 +128,18 @@ export default function ImageUploader({
             transition={{ duration: 0.3 }}
             className="space-y-6"
           >
+            {/* Filename / size */}
+            {file && (
+              <div className="flex items-center justify-between px-1">
+                <p className="text-sm text-gray-600 font-medium truncate max-w-[70%]">
+                  {file.name}
+                </p>
+                <p className="text-xs text-gray-400">
+                  {formatFileSize(file.size)}
+                </p>
+              </div>
+            )}
+
             {/* Image Preview */}
             <div className="relative bg-gray-50 rounded-xl p-4 border border-gray-100">
               <button
@@ -177,6 +207,15 @@ export default function ImageUploader({
                 Choose different
               </button>
             </div>
+
+            {error && (
+              <p
+                role="alert"
+                className="text-sm text-red-600 bg-red-50 border border-red-100 rounded-lg px-4 py-3"
+              >
+                {error}
+              </p>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
