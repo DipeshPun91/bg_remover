@@ -48,7 +48,7 @@ A modern, full-featured web application for removing image backgrounds with an i
    Create a `.env.local` file in the root directory:
 
    ```
-   NEXT_PUBLIC_REMOVER_BG_API_KEY=your_api_key_here
+   REMOVE_BG_API_KEY=your_api_key_here
    ```
 
 4. **Start the development server:**

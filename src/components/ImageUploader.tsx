@@ -6,6 +6,7 @@ import { useDropzone } from "react-dropzone";
 import { motion, AnimatePresence } from "framer-motion";
 import { UploadIcon, MagicWandIcon, Cross2Icon } from "@radix-ui/react-icons";
 import Image from "next/image";
+import ApiKeyModal from "./ApiKeyModal";
 
 export default function ImageUploader({
   onProcessingComplete,
@@ -16,6 +17,7 @@ export default function ImageUploader({
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [showApiKeyModal, setShowApiKeyModal] = useState(false);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const selectedFile = acceptedFiles[0];
@@ -60,7 +62,11 @@ export default function ImageUploader({
       const result = await response.json();
 
       if (!response.ok) {
-        setError(result.error || "Something went wrong. Please try again.");
+        if (result.code === "NO_API_KEY") {
+          setShowApiKeyModal(true);
+        } else {
+          setError(result.error || "Something went wrong. Please try again.");
+        }
         return;
       }
 
@@ -80,6 +86,10 @@ export default function ImageUploader({
 
   return (
     <div className="space-y-6">
+      <ApiKeyModal
+        open={showApiKeyModal}
+        onClose={() => setShowApiKeyModal(false)}
+      />
       <AnimatePresence mode="wait">
         {!file ? (
           <motion.div
