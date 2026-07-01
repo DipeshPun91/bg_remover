@@ -6,9 +6,8 @@ import {
   MagicWandIcon,
   LightningBoltIcon,
   CheckCircledIcon,
-  AvatarIcon,
-  StarIcon,
   ArrowRightIcon,
+  GitHubLogoIcon,
 } from "@radix-ui/react-icons";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -34,33 +33,24 @@ const childVariants = {
 
 const features = [
   {
-    title: "AI-Powered Precision",
+    title: "Powered by remove.bg",
     icon: <MagicWandIcon className="w-5 h-5" />,
     description:
-      "Advanced edge detection algorithms deliver pixel-perfect cuts with hair-level accuracy.",
+      "Background removal is handled by remove.bg's image segmentation model, not a from-scratch AI pipeline.",
   },
   {
-    title: "Instant Processing",
+    title: "Fast turnaround",
     icon: <LightningBoltIcon className="w-5 h-5" />,
     description:
-      "Results in under 3 seconds with batch processing support for up to 100 images.",
+      "Upload one image at a time and get a result back in a few seconds.",
   },
   {
-    title: "Professional Quality",
+    title: "Transparent PNG output",
     icon: <CheckCircledIcon className="w-5 h-5" />,
     description:
-      "4K resolution support with lossless output in PNG, JPEG, and WebP formats.",
+      "Download the result as a PNG with a transparent background, ready to drop into other projects.",
   },
 ];
-
-const stats = [
-  { value: "50,000+", label: "Active Users" },
-  { value: "100M+", label: "Images Processed" },
-  { value: "< 3s", label: "Average Processing" },
-  { value: "99.9%", label: "Accuracy Rate" },
-];
-
-const logos = ["Dropbox", "Shopify", "Adobe", "Figma", "Notion", "Slack"];
 
 export default function Remover() {
   return (
@@ -87,17 +77,17 @@ export default function Remover() {
             <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 bg-gray-50 border border-gray-200 rounded-full">
               <span className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
               <p className="text-xs font-medium text-gray-600 uppercase tracking-wide">
-                Trusted by industry leaders
+                A background remover I built
               </p>
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 tracking-tight">
               Remove backgrounds
               <br />
-              <span className="text-blue-600">with AI precision</span>
+              <span className="text-blue-600">in a couple clicks</span>
             </h1>
             <p className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Automatically remove image backgrounds in seconds. Used by
-              designers, e-commerce teams, and creative professionals worldwide.
+              Upload an image, and get back a clean PNG with a transparent
+              background. Built with Next.js and the remove.bg API.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
               <Link href="/remover-bg">
@@ -107,52 +97,21 @@ export default function Remover() {
                   className="bg-gray-900 text-white px-8 py-3.5 rounded-lg font-medium text-base
                            hover:bg-gray-800 transition-all flex items-center gap-2 shadow-sm"
                 >
-                  Start free trial
+                  Upload an image
                   <ArrowRightIcon className="w-4 h-4" />
                 </motion.button>
               </Link>
-              <button className="px-8 py-3.5 text-gray-700 font-medium text-base hover:text-gray-900 transition-colors">
-                Watch demo
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Trusted by section */}
-          <motion.div variants={childVariants} className="mt-20">
-            <p className="text-center text-xs font-medium text-gray-400 uppercase tracking-wider mb-6">
-              Trusted by innovative companies
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
-              {logos.map((logo, i) => (
-                <span
-                  key={i}
-                  className="text-gray-400 text-sm font-medium tracking-wide"
-                >
-                  {logo}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Stats Section - Clean numbers */}
-      <div className="border-y border-gray-100 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={childVariants}
-                className="text-center"
+              <a
+                href="https://github.com/DipeshPun91/bg_remover"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3.5 text-gray-700 font-medium text-base hover:text-gray-900 transition-colors inline-flex items-center gap-2"
               >
-                <p className="text-3xl sm:text-4xl font-semibold text-gray-900 mb-1 tracking-tight">
-                  {stat.value}
-                </p>
-                <p className="text-sm text-gray-500">{stat.label}</p>
-              </motion.div>
-            ))}
-          </div>
+                <GitHubLogoIcon className="w-4 h-4" />
+                View on GitHub
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
 
@@ -164,10 +123,10 @@ export default function Remover() {
             className="text-center max-w-2xl mx-auto mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-              Everything you need in one platform
+              How it works
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed">
-              Professional-grade background removal that works instantly
+              A simple upload-and-download flow, nothing more
             </p>
           </motion.div>
 
@@ -196,42 +155,6 @@ export default function Remover() {
         </motion.div>
       </div>
 
-      {/* Testimonial Section - Clean, minimal */}
-      <div className="bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <motion.div
-            variants={childVariants}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <div className="flex justify-center gap-0.5 mb-8">
-              {[...Array(5)].map((_, i) => (
-                <StarIcon
-                  key={i}
-                  className="w-5 h-5 fill-gray-300 text-gray-300"
-                />
-              ))}
-            </div>
-            <p className="text-xl sm:text-2xl text-gray-700 mb-8 leading-relaxed">
-              &ldquo;SnapCut has transformed our workflow. What used to take
-              hours now takes seconds. The accuracy is remarkable.&ldquo;
-            </p>
-            <div className="flex items-center justify-center gap-3">
-              <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-                <AvatarIcon className="w-5 h-5 text-gray-500" />
-              </div>
-              <div className="text-left">
-                <p className="font-medium text-gray-900 text-sm">
-                  Sarah Johnson
-                </p>
-                <p className="text-xs text-gray-500">
-                  Creative Director, Pixel Studio
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
       {/* CTA Section - Minimal, direct */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <motion.div
@@ -239,10 +162,10 @@ export default function Remover() {
           className="text-center max-w-2xl mx-auto"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-            Start removing backgrounds today
+            Try it on your own image
           </h2>
           <p className="text-lg text-gray-600 mb-8">
-            Join 50,000+ professionals who trust SnapCut
+            Free to use, no sign-up required
           </p>
           <Link href="/remover-bg">
             <motion.button
@@ -255,9 +178,6 @@ export default function Remover() {
               <ArrowRightIcon className="w-4 h-4" />
             </motion.button>
           </Link>
-          <p className="text-xs text-gray-400 mt-4">
-            No credit card required • Free forever plan available
-          </p>
         </motion.div>
       </div>
 

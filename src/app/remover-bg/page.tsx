@@ -28,7 +28,11 @@ export default function Remover() {
   const router = useRouter();
 
   const handleProcessingComplete = (resultUrl: string) => {
-    router.push(`/remover-bg/result?image=${encodeURIComponent(resultUrl)}`);
+    // The processed image comes back as a base64 data URL, which is too
+    // long to safely pass as a query param, so we hand it off via
+    // sessionStorage and read it back on the result page instead.
+    sessionStorage.setItem("bgRemoverResult", resultUrl);
+    router.push("/remover-bg/result");
   };
 
   return (

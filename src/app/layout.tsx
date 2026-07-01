@@ -9,9 +9,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "SnapCut - AI Background Remover | Remove Image Backgrounds Instantly",
+  title: "SnapCut - Background Remover",
   description:
-    "Remove image backgrounds in seconds with SnapCut's AI-powered tool. Professional background removal for e-commerce, portraits, and product photos. Free trial available.",
+    "Remove image backgrounds in seconds. A simple tool built with Next.js and the remove.bg API — upload an image, get back a transparent PNG.",
 };
 
 export default function RootLayout({
