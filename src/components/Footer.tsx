@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { GitHubLogoIcon, MagicWandIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 const childVariants = {
   hidden: { y: 20, opacity: 0 },
@@ -19,18 +19,21 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-12">
           {/* Brand Section - Left */}
-          <div className="flex items-center gap-3 flex-1">
-            <div className="w-9 h-9 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/10 flex-shrink-0">
-              <MagicWandIcon className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <span className="text-base font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                SnapCut
+          <div className="flex-1">
+            <Link href="/" className="group relative inline-flex items-center">
+              <span className="text-xl font-bold tracking-tight">
+                <span className="text-blue-600 transition-colors duration-300 group-hover:text-blue-700">
+                  Snap
+                </span>
+                <span className="text-white transition-colors duration-300">
+                  Cut
+                </span>
               </span>
-              <p className="text-xs text-gray-500 mt-0.5">
-                Background remover tool
-              </p>
-            </div>
+              <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-gray-900 group-hover:w-full transition-all duration-300"></span>
+            </Link>
+            <p className="text-xs text-gray-500 mt-0.5">
+              Background remover tool
+            </p>
           </div>
 
           {/* Links Section - Right */}

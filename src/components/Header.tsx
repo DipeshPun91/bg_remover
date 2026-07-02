@@ -7,12 +7,22 @@ const Header = () => {
     <nav className="sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-200/80 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="group relative flex items-center">
-          <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-300">
-            SnapCut
+        <div className="flex items-center gap-4 flex-1">
+          <Link href="/" className="group relative flex items-center">
+            <span className="text-xl font-bold tracking-tight">
+              <span className="text-blue-600 transition-colors duration-300 group-hover:text-blue-700">
+                Snap
+              </span>
+              <span className="text-gray-900 transition-colors duration-300 group-hover:text-gray-700">
+                Cut
+              </span>
+            </span>
+            <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-gray-900 group-hover:w-full transition-all duration-300"></span>
+          </Link>
+          <span className="text-xs text-gray-400 font-medium bg-gray-100 px-2 py-0.5 rounded-full">
+            Background remover
           </span>
-          <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"></span>
-        </Link>
+        </div>
 
         {/* Navigation Links with Icons */}
         <div className="flex items-center gap-2">
